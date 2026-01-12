@@ -1,0 +1,18 @@
+{
+    "admin": {
+        "password": "scrypt:32768:8:1$TmcscpsdPWTHohxJ$0fe27704c35f04a4fe6b4dc85b22d69c8e092e3b265a0503534e9ff9a9055e37c466142bf68672774a5ed60eb874ab02405c285c63f391bd95f7d43c02b09fea",
+        "role": "admin"
+    },
+    "siva": {
+        "password": "scrypt:32768:8:1$1FdoyHIYcICzJb69$c9be63e910611e0b7edcea590aa95830eee764205f68ce4dbe54e53d84df9af6a0ce0e0da995b7f93e0a96e19c2cacf5bcd1a4251a43aeb481ee0c2017aab44d",
+        "role": "admin"
+    },
+    "sivashankar": {
+        "password": "scrypt:32768:8:1$LpudLEV5ZFdltZh8$6e5efd7f06861bfcaa1524ea30cf8c129e3365f706659e014328d9966fb5e64db9ce36d53be83b3390c49c39323025f117a15c542e191e798c0230ad4e690011",
+        "role": "user"
+    },
+    "bob": {
+        "password": "scrypt:32768:8:1$pCK7HaQo7W3aOKJl$d50c3a913b4146ce6acb3ab0ae8fd3dba3a7b4396516e11c5e405817d50831f93b2ab4fa0f8cd04eacf56461b7b7a2fc6e70cd6cca7d340b998a36b571a1f91c",
+        "role": "user"
+    }
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Register-Student Stress Predictor</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .register-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 0 20px rgba(255, 117, 140, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        label {
+            font-weight: 600;
+        }
+        .form-control {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: #fff;
+        }
+        .form-control:focus {
+            background: rgba(255,255,255,0.3);
+            color: #fff;
+            box-shadow: 0 0 8px #ff758c;
+            outline: none;
+        }
+        .btn-register {
+            background: #ff7eb3;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            border: none;
+            font-weight: 600;
+        }
+        .btn-register:hover {
+            background: linear-gradient(90deg, #e76395, #e45487);
+        }
+        .text-center a {
+            color: #ffd1dc;
+            text-decoration: none;
+        }
+        .text-center a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .error-message {
+            background: #ff4d4d;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-card">
+        <h2 class="text-center mb-4">Register</h2>
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form method="POST" action="/register">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    name="username"
+                    placeholder="Choose a username"
+                    required
+                    autofocus
+                />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    required
+                />
+            </div>
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="confirm_password"
+                    name="confirm_password"
+                    placeholder="Confirm your password"
+                    required
+                />
+            </div>
+            <button type="submit" class="btn btn-register w-100">Register</button>
+        </form>
+        <p class="text-center mt-3">
+            Already have an account? <a href="/login">Log in here</a>
+        </p>
+    </div>
+</body>
+</html>

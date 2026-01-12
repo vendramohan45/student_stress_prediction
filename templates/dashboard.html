@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Dashboard - Student Stress Predictor</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container {
+            padding-top: 2rem;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(34, 49, 63, 0.7);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+        table {
+            color: #fff;
+        }
+        thead th {
+            border-bottom: 2px solid #7c3aed;
+        }
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+        }
+        .nav-link, .navbar-brand {
+            color: #c5b0ff;
+        }
+        .nav-link:hover {
+            color: #fff;
+        }
+        .stat-card {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00eaff;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark p-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index">Student Stress Predictor</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/index">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/dashboard">Overview</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2 class="text-center mb-4">System Overview Dashboard</h2>
+
+    <!-- Stats Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <h5>Total Users</h5>
+                <div class="stat-value">{{ total_users }}</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <h5>Admin Users</h5>
+                <div class="stat-value">{{ admin_count }}</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <h5>Regular Users</h5>
+                <div class="stat-value">{{ total_users - admin_count }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Predictions -->
+    <div class="card">
+        <h4>Recent Predictions</h4>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Stress Level (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pred in recent_predictions %}
+                <tr>
+                    <td>{{ pred.user }}</td>
+                    <td>{{ pred.date }}</td>
+                    <td>{{ pred.stress_level }}</td>
+                </tr>
+                {% endfor %}
+                {% if recent_predictions|length == 0 %}
+                <tr><td colspan="3" class="text-center">No recent predictions.</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Model Metrics -->
+    <div class="card">
+        <h4>Model Performance Metrics</h4>
+        <div class="row">
+            {% for name, m in metrics.items() %}
+            <div class="col-md-6">
+                <div class="card p-3 mb-3" style="background: rgba(255,255,255,0.05);">
+                    <h6>{{ name }}</h6>
+                    <p>Accuracy: {{ "%.2f"|format(m["accuracy"]) }}%</p>
+                    <p>MAE: {{ "%.2f"|format(m["mae"]) }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            {% if not metrics %}
+            <p class="text-muted">No metrics available. Run generate_and_train.py first.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

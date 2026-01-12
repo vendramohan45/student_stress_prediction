@@ -1,0 +1,16 @@
+{
+    "feature_order": [
+        "study_hours_per_day",
+        "assignments_per_week",
+        "exam_prep_days",
+        "academic_pressure",
+        "anxiety_level",
+        "motivation_level",
+        "sleep_hours",
+        "exercise_days_per_week",
+        "screen_time_hours",
+        "family_support",
+        "peer_support",
+        "commute_time_minutes"
+    ]
+}
